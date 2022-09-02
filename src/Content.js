@@ -13,7 +13,7 @@ const Content = ({items,hadelete, handleCheck, haad})=>{
                   
                     />
             ) :(
-                <p>EMpTY</p>
+                <p>EMPTY LIST</p>
 
             )}
         </main>

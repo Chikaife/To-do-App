@@ -8,8 +8,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 
+
 function App() {
-  const API_URL ='http://localhost:3500/items';
+  const API_URL ='http://localhost:3500/';
 
 
    
@@ -17,18 +18,26 @@ function App() {
 
 const [newItem, setNewItem] = useState('')
 const [search, setSearch] = useState('')
+const [fetchError, setFetchError] = useState(null)
+
+
 
 useEffect(()=>{
 const fetchItems = async () =>{
   try{
     const response = await fetch(API_URL);
+    if (!response.ok) throw Error("Something went wrong")
     const listItems = await response.json();
-    setItems(listItems)
+    console.log(listItems)
+    setItems(listItems);
+    setFetchError(null)
   } catch(err){
-    console.log(err.stack)
+    setFetchError(err.message)
   }
 }  
-}, [])
+
+(async () => await fetchItems())();
+}, []) 
 
 
  
@@ -57,6 +66,7 @@ const handleCheck = (id)=>{
     addItem(newItem);
     setNewItem(''); 
   }
+
      
 
   
