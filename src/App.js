@@ -18,7 +18,7 @@ function App() {
 
 const [newItem, setNewItem] = useState('')
 const [search, setSearch] = useState('')
-const [fetchError, setFetchError] = useState(null)
+const [ , setFetchError] = useState(null);
 
 
 
